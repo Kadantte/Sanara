@@ -48,6 +48,8 @@ namespace SanaraV2.Modules.Tools
         public static string TranslationsAvailability(ulong guildId) { return (Translation.GetTranslation(guildId, "translationsAvailability")); }
         public static string LatestChanges(ulong guildId) { return (Translation.GetTranslation(guildId, "latestChanges")); }
         public static string ByStr(ulong guildId) { return (Translation.GetTranslation(guildId, "by")); }
+        public static string MsStr(ulong guildId) { return (Translation.GetTranslation(guildId, "ms")); }
+        public static string Latency(ulong guildId) { return (Translation.GetTranslation(guildId, "latency")); }
 
         /// --------------------------- Code ---------------------------
         public static string ShellNotFound(ulong guildId) { return (Translation.GetTranslation(guildId, "shellNotFound")); }

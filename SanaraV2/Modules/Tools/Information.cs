@@ -30,6 +30,14 @@ namespace SanaraV2.Modules.Tools
     {
         Program p = Program.p;
 
+        [Command("Ping")]
+        public async Task Ping(params string[] _)
+        {
+            int latency = (int)new DateTimeOffset(DateTime.UtcNow).Subtract(Context.Message.CreatedAt).TotalMilliseconds;
+            await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Information);
+            await ReplyAsync(Sentences.Latency(Context.Guild.Id) + " " + latency + Sentences.MsStr(Context.Guild.Id));
+        }
+
         [Command("Logs"), Alias("Log", "Changes", "Change")]
         public async Task Logs(params string[] args)
         {
