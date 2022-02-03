@@ -16,12 +16,12 @@ namespace Sanara.Game.Impl
             _allowedFormats = info.AllowedFormats;
         }
 
-        protected override Task CheckAnswerInternalAsync(ICommandContext answer)
+        protected override async Task CheckAnswerInternalAsync(ICommandContext answer)
         {
             string userAnswer = answer.GetArgument<string>("answer");
             if (!_current.Answers.Any(x => Utils.EasyCompare(x, userAnswer)))
                 throw new InvalidGameAnswer("");
-            return Task.CompletedTask;
+            await answer.AddReactionAsync(new Emoji("✅"));
         }
 
         protected override int GetGameTime()

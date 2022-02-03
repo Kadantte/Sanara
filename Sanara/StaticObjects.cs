@@ -173,6 +173,7 @@ namespace Sanara
             new FateGOPreload(),
             new PokemonPreload(),
             new AnimePreload(),
+            new AnimeHardPreload(),
 #if NSFW_BUILD
             new BooruQuizzPreload(),
             new BooruFillPreload()

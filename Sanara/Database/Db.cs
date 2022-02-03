@@ -129,7 +129,7 @@ namespace Sanara.Database
             {
                 name = name[..^5]; // Retro compatibility with V3
             }
-            return name;
+            return name.Replace("(", "").Replace(")", "");
         }
 
         public async Task<QuizzPreloadResult[]> GetCacheAsync(string name)

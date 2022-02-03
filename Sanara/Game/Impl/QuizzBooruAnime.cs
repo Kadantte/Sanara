@@ -1,4 +1,5 @@
-﻿using Discord;
+﻿using BooruSharp.Search.Post;
+using Discord;
 using Sanara.Game.Preload;
 using Sanara.Game.Preload.Result;
 
@@ -13,14 +14,22 @@ namespace Sanara.Game.Impl
         {
             base.GetPostInternal();
 
-            var results = _booru.GetRandomPostsAsync(10, _current.ImageUrl).GetAwaiter().GetResult();
-            results = results.Where(x => _allowedFormats.Contains(Path.GetExtension(x.FileUrl.AbsoluteUri)) && !x.Tags.Contains("western") && !x.Tags.Contains("web") && x.Rating == BooruSharp.Search.Post.Rating.Safe).ToArray();
+            SearchResult[] results;
+            if (_current.ImageUrl != null)
+            {
+                results = _booru.GetRandomPostsAsync(10, _current.ImageUrl).GetAwaiter().GetResult();
+            }
+            else
+            {
+                results = _booru.GetRandomPostsAsync(10).GetAwaiter().GetResult();
+            }
+            results = results.Where(x => _allowedFormats.Contains(Path.GetExtension(x.FileUrl.AbsoluteUri)) && !x.Tags.Contains("western") && !x.Tags.Contains("web") && x.Rating == Rating.Safe).ToArray();
             if (results.Length == 0)
                 throw new IndexOutOfRangeException("No result with correct format found");
 
             var result = results[StaticObjects.Random.Next(results.Length)];
 
-            List<string> answers = new List<string>();
+            List<string> answers = new();
 
             foreach (var t in result.Tags)
             {
