@@ -125,7 +125,11 @@ namespace Sanara.Database
         public string GetCacheName(string name)
         {
             name = Utils.CleanWord(name);
-            if (name.EndsWith("quizz"))
+            if (name.EndsWith("audioquizz"))
+            {
+                name = name[..^10] + "_audio"; // Retro compatibility with V3
+            }
+            else if (name.EndsWith("quizz"))
             {
                 name = name[..^5]; // Retro compatibility with V3
             }

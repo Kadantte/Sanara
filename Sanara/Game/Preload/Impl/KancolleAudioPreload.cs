@@ -22,7 +22,7 @@ namespace Sanara.Game.Preload.Impl
                         string shipUrl = "https://kancolle.fandom.com/wiki/" + name;
                         string html = StaticObjects.HttpClient.GetStringAsync(shipUrl).GetAwaiter().GetResult();
 
-                        var result = new QuizzPreloadResult(Regex.Match(html, "https:\\/\\/vignette\\.wikia\\.nocookie\\.net\\/kancolle\\/images\\/[0-9a-z]+\\/[0-9a-z]+\\/[^-]*-Battle_Start\\.ogg").Value, new[] { name });
+                        var result = new QuizzPreloadResult(Regex.Match(html, "\"([^\"]+\\/[0-9a-z]+\\/[0-9a-z]+\\/[^-]+-Battle_Start\\.ogg)").Groups[1].Value, new[] { name });
                         StaticObjects.Db.SetCacheAsync(Name, result).GetAwaiter().GetResult();
                         cache.Add(result);
                     }
