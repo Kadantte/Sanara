@@ -35,7 +35,7 @@ namespace Sanara
 #endif
         public static DiscordSocketClient Client { get; } = new(new DiscordSocketConfig
         {
-            GatewayIntents = GatewayIntents.Guilds | GatewayIntents.GuildMessages | GatewayIntents.DirectMessages | GatewayIntents.GuildMessageReactions
+            GatewayIntents = GatewayIntents.Guilds | GatewayIntents.GuildMessages | GatewayIntents.DirectMessages | GatewayIntents.GuildMessageReactions | GatewayIntents.GuildVoiceStates
         });
         /// <summary>
         /// To display uptime
@@ -167,6 +167,7 @@ namespace Sanara
 
             new ShiritoriPreload(),
             new KancollePreload(),
+            new KancolleAudioPreload(),
             new ArknightsPreload(),
             new GirlsFrontlinePreload(),
             new AzurLanePreload(),

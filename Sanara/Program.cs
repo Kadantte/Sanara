@@ -498,6 +498,8 @@ namespace Sanara
 
         private async Task Ready()
         {
+            _pendingRequests.Clear();
+
             if (_commandsAssociations.Count != 0)
             {
                 return;
